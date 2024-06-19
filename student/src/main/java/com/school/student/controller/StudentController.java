@@ -36,9 +36,10 @@ public class StudentController {
 	public PaginatedResponseDTO<StudentResponsedto> StudentData(@RequestParam int page, @RequestParam int size) {
 		return this.studentService.StudentData(page, size);
 	}
-
+// localhost:8080/api/students?page=3&size=6  params  
+	
 	@GetMapping("/students/search")
-	public List<StudentResponsedto> serchStudents(String name) {
+	public List<StudentResponsedto> serchStudents(@RequestParam String name) {
 		return studentService.searchStudent(name);
 	}
 

@@ -18,6 +18,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 //	List<StudentResponsedto> searchStudent(@Param("id") Integer id, @Param("name") String name);
 	
 	@Query("SELECT s FROM Student s WHERE " + "(s.name IS NULL OR s.name LIKE %:name%)")
-	List<StudentResponsedto> searchStudent(@Param("name") String name);
+	List<Student> searchStudent(@Param("name") String name);
 
 }

@@ -47,24 +47,31 @@ public class Studentservice {
 		return responseDTO;
 	}
 
-    public List<StudentResponsedto> searchStudent( String name) {
-        return studentRepository.searchStudent(name);
-    }
+	public List<StudentResponsedto> searchStudent(String name) {
+		List<Student> students = studentRepository.searchStudent(name);
+		List<StudentResponsedto> responseList = new ArrayList<>();
+		for (Student student : students) {
+			StudentResponsedto dto = new StudentResponsedto();
+			dto.setId(student.getId());
+			dto.setName(student.getName());
+			dto.setSchoolId(student.getSchool().getId());
+			responseList.add(dto);
+		}
+		return responseList;
+	}
 
-
-
-	public List<StudentResponsedto> retriveStudent() {               //DTO
+	public List<StudentResponsedto> retriveStudent() { // DTO
 //	return studentRepository.findAll();
 		List<Student> data = this.studentRepository.findAll();
 		List<StudentResponsedto> resList = new ArrayList<>();
-		for(Student student: data){
+		for (Student student : data) {
 			StudentResponsedto temp = new StudentResponsedto();
 			temp.setId(student.getId());
 			temp.setName(student.getName());
 			temp.setSchoolId(student.getSchool().getId());
 			resList.add(temp);
 		}
-		return resList;	
+		return resList;
 	}
 
 }
